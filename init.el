@@ -91,6 +91,7 @@
 (global-set-key (kbd "C-c i") 'start-irc)
 (global-set-key (kbd "C-x g") 'goto-line)
 (global-set-key (kbd "C-x p") 'package-list-packages)
+(global-set-key (kbd "C-c C-f") 'ff-find-other-file)
 
 ;; Messy stuff lives beyond here
 
