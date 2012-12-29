@@ -7,12 +7,6 @@
 ;; No splash screen.
 (setq inhibit-startup-message t)
 
-;; Extra package repositories
-(require 'package)
-(add-to-list 'package-archives '("tromey" . "http://tromey.com/elpa/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(package-initialize)
-
 ;; Line numbers are good!
 (global-linum-mode t)
 (column-number-mode t)
@@ -22,6 +16,12 @@
 (custom-set-faces
  '(default ((t (:family "Monospace" :foundry "xos4" :slant normal :weight normal :height 80 :width normal)))))
 
+;; Extra package repositories.
+(require 'package)
+(add-to-list 'package-archives '("tromey" . "http://tromey.com/elpa/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
 ;; Remeber open buffers for next session.
 (desktop-save-mode t)
 
@@ -30,12 +30,17 @@
 (ido-mode t)
 (ido-ubiquitous-mode t)
 
-;; Easy window movement
+;; Easy window movement.
 (require 'windmove)
 (windmove-default-keybindings 'meta)
 
 ;; Better buffer naming.
 (require 'uniquify)
+
+;; Save point position between sessions
+(require 'saveplace)
+(setq-default save-place t)
+(setq save-place-file (expand-file-name ".places" user-emacs-directory))
 
 ;; Highlight matching parens and automatically insert pairs.
 (show-paren-mode t)
@@ -45,19 +50,23 @@
 ;; Auto-completion is sick!
 (require 'auto-complete)
 (global-auto-complete-mode t)
+
+;; Syntax checker.
 (require 'flymake)
 (flymake-mode t)
+
+;; Snippets.
 (auto-insert-mode t)
 (yas-global-mode t)
-(which-function-mode t)
 
-;; Coding style
+;; Coding style.
 (setq-default indent-tabs-mode nil)
 (setq tab-width 4)
 (setq c-basic-offset 4)
 (setq c-default-style "k&r" -basic-offset)
+(which-function-mode t)
 
-;; Handy functions courtesy of whattheemacs.d
+;; Handy functions courtesy of whattheemacs.d.
 (defun open-line-below ()
   (interactive)
   (if (eolp)
@@ -74,13 +83,16 @@
   (indent-for-tab-command))
 
 ;; Keybinds
+(global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "<C-return>") 'open-line-below)
 (global-set-key (kbd "<C-M-return>") 'open-line-above)
 (global-set-key (kbd "C-c c") 'comment-or-uncomment-region)
 (global-set-key (kbd "C-c g") 'magit-status)
-(global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "C-c i") 'start-irc)
-(global-set-key (kbd "C-x C-g") 'goto-line)
+(global-set-key (kbd "C-x g") 'goto-line)
+(global-set-key (kbd "C-x p") 'package-list-packages)
+
+;; Messy stuff lives beyond here
 
 ;; IRC
 (require 'erc)
