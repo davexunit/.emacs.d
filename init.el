@@ -82,6 +82,19 @@
   (forward-line -1)
   (indent-for-tab-command))
 
+;; Turn a C function declaration into a function prototype.
+(defun c-declaration-to-prototype ()
+  (interactive)
+  (move-end-of-line nil)
+  (when (char-equal (char-before) (string-to-char ";"))
+    (delete-backward-char 1))
+  (insert " {")
+  (newline-and-indent)
+  (newline)
+  (insert "}")
+  (previous-line)
+  (move-end-of-line nil))
+
 ;; Keybinds
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "<C-return>") 'open-line-below)
@@ -92,6 +105,7 @@
 (global-set-key (kbd "C-x g") 'goto-line)
 (global-set-key (kbd "C-x p") 'package-list-packages)
 (global-set-key (kbd "C-c C-f") 'ff-find-other-file)
+(global-set-key (kbd "C-c p") 'c-declaration-to-prototype)
 
 ;; Messy stuff lives beyond here
 
