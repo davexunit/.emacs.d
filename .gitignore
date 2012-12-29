@@ -1,0 +1,8 @@
+auto-save-list
+*~
+elpa
+session.*
+url
+/ac-comphist.dat
+/.ercpasswords
+.emacs.desktop*
