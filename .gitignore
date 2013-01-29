@@ -6,3 +6,8 @@ url
 /ac-comphist.dat
 /.ercpasswords
 .emacs.desktop*
+/elisp/
+/.places
+/.smex-items
+/eshell
+/places
