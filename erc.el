@@ -6,14 +6,27 @@
 (require 'erc-services)
 (require 'notifications)
 
-(defun erc-message-notification (proc parsed)
+;; Notify the user of private messages
+(defun erc-private-message-notify (proc parsed)
   (let ((nick (car (erc-parse-user (erc-response.sender parsed))))
         (target (car (erc-response.command-args parsed)))
         (msg (erc-response.contents parsed)))
     (notifications-notify :title nick :body msg)))
 
-(erc-message-notification "Munchor" "ping")
-(add-hook 'erc-server-PING-functions 'erc-message-notification)
+;; (add-hook 'erc-server-PRIVMSG-functions 'erc-private-message-notify)
+
+;; Notify the user when their nick is mentioned
+(defun erc-nick-mentioned-notify (match-type nick message)
+  "Shows a notification when user's nick is mentioned."
+  (when (and (not (posix-string-match "^\\** *Users on #" message))
+             (eq math-type 'current-nick))
+    (notifications-notify
+     :title nick
+     :body message
+     :app-icon "/usr/share/notify-osd/icons/gnome/scalable/status/notification-message-im.svg"
+     :urgency 'low)))
+
+;; (add-hook 'erc-text-matched-hook 'erc-nick-mentioned-notify)
 
 ;; Nickname
 (setq erc-nick "davexunit")
