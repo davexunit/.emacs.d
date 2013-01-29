@@ -6,14 +6,14 @@
 (require 'erc-services)
 (require 'notifications)
 
-(defun erc-message-notification (proc parsed)
-  (let ((nick (car (erc-parse-user (erc-response.sender parsed))))
-        (target (car (erc-response.command-args parsed)))
-        (msg (erc-response.contents parsed)))
-    (notifications-notify :title nick :body msg)))
+;; (defun erc-message-notification (proc parsed)
+;;   (let ((nick (car (erc-parse-user (erc-response.sender parsed))))
+;;         (target (car (erc-response.command-args parsed)))
+;;         (msg (erc-response.contents parsed)))
+;;     (notifications-notify :title nick :body msg)))
 
-(erc-message-notification "Munchor" "ping")
-(add-hook 'erc-server-PING-functions 'erc-message-notification)
+;; (erc-message-notification "Munchor" "ping")
+;; (add-hook 'erc-server-PING-functions 'erc-message-notification)
 
 ;; Nickname
 (setq erc-nick "davexunit")
