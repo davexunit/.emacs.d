@@ -11,16 +11,18 @@
 (global-linum-mode t)
 (column-number-mode t)
 
-;; Theme
-(load-theme 'solarized-dark t)
-(custom-set-faces
- '(default ((t (:family "Monospace" :foundry "xos4" :slant normal :weight normal :height 80 :width normal)))))
-
 ;; Extra package repositories.
 (require 'package)
-(add-to-list 'package-archives '("tromey" . "http://tromey.com/elpa/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives
+             '("tromey" . "http://tromey.com/elpa/") t)
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
+
+;; Theme
+(load-theme 'zenburn t)
 
 ;; Remeber open buffers for next session.
 (desktop-save-mode t)
@@ -42,10 +44,17 @@
 (setq-default save-place t)
 (setq save-place-file (expand-file-name ".places" user-emacs-directory))
 
-;; Highlight matching parens and automatically insert pairs.
-(show-paren-mode t)
+;; Highlight matching parens, automatically insert pairs, use rainbow
+;; delimiters and use paredit for Lisp buffers.
 (require 'autopair)
-(autopair-global-mode t)
+(require 'rainbow-delimiters)
+(global-rainbow-delimiters-mode t)
+(show-paren-mode t)
+(autopair-global-mode 1)
+(add-hook 'emacs-lisp-mode-hook       (lambda () (paredit-mode t)))
+(add-hook 'lisp-mode-hook             (lambda () (paredit-mode t)))
+(add-hook 'lisp-interaction-mode-hook (lambda () (paredit-mode t)))
+(add-hook 'scheme-mode-hook           (lambda () (paredit-mode t)))
 
 ;; Auto-completion is sick!
 (require 'auto-complete)
@@ -57,14 +66,22 @@
 
 ;; Snippets.
 (auto-insert-mode t)
-(yas-global-mode t)
 
 ;; Coding style.
 (setq-default indent-tabs-mode nil)
 (setq tab-width 4)
 (setq c-basic-offset 4)
-(setq c-default-style "k&r" -basic-offset)
+(setq c-default-style "k&r" c-basic-offset 4)
 (which-function-mode t)
+
+;; Scheme
+(put 'syntax-parameterize 'scheme-indent-function 1)
+(put 'describe 'scheme-indent-function 1)
+(put 'it 'scheme-indent-function 1)
+(put 'before-each 'scheme-indent-function 1)
+(put 'after-each 'scheme-indent-function 1)
+(put 'stub 'scheme-indent-function 1)
+(put 'coroutine 'scheme-indent-function 1)
 
 ;; Handy functions courtesy of whattheemacs.d.
 (defun open-line-below ()
@@ -95,6 +112,20 @@
   (previous-line)
   (move-end-of-line nil))
 
+(defun cleanup-buffer-safe ()
+  "Perform a bunch of safe operations on the whitespace content of a buffer.
+Does not indent buffer, because it is used for a before-save-hook, and that
+might be bad."
+  (interactive)
+  (delete-trailing-whitespace)
+  (set-buffer-file-coding-system 'utf-8))
+
+;; Various superfluous white-space. Just say no.
+(add-hook 'before-save-hook 'cleanup-buffer-safe)
+
+;; erc configuration
+(load "~/.emacs.d/erc.el")
+
 ;; Keybinds
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "<C-return>") 'open-line-below)
@@ -108,33 +139,6 @@
 (global-set-key (kbd "C-c p") 'c-declaration-to-prototype)
 
 ;; Messy stuff lives beyond here
-
-;; IRC
-(require 'erc)
-(erc-autojoin-mode t)
-(setq erc-autojoin-channels-alist
-      '(("rizon.net" "#/g/sicp" "#/g/amedev")
-        ("freenode.net" "#mediagoblin" "#libre.fm" "#allegro" "#guile" "#emacs" "#vidyadev")
-        ("gimp.org" "#evolution")))
-(erc-track-mode t)
-(setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE" "324" "329" "332" "333" "353" "477"))
-
-;; Nickserv
-(load "~/.emacs.d/.ercpasswords")
-(add-hook 'erc-after-connect
-    	  '(lambda (SERVER NICK)
-    	     (cond
-    	      ((string-match "freenode\\.net" SERVER)
-    	       (erc-message "PRIVMSG" (concat "NickServ identify " freenode-password)))
-              
-    	      ((string-match "rizon\\.net" SERVER)
-    	       (erc-message "PRIVMSG" (concat "NickServ identify " rizon-password))))))
-
-;; Join IRC channels
-(defun start-irc ()
-  (interactive)
-  (erc :server "irc.freenode.net" :port 6667 :nick "davexunit")
-  (erc :server "irc.rizon.net"    :port 6667 :nick "davexunit"))
 
 ;; Patch for linum-mode
 (defun linum-update-window (win)
@@ -178,3 +182,4 @@
         (forward-line))
       (setq line (1+ line)))
     (set-window-margins win width (cdr (window-margins win)))))
+(put 'upcase-region 'disabled nil)
