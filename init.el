@@ -83,7 +83,13 @@
 (put 'stub 'scheme-indent-function 1)
 (put 'coroutine 'scheme-indent-function 1)
 
-;; Handy functions courtesy of whattheemacs.d.
+;; Vista Higher Learning configuration
+(defvar use-vhl-config t)
+
+(when use-vhl-config
+  (load "~/.emacs.d/vhl.el"))
+
+;; Handy functions courtesy of whattheemacs.d
 (defun open-line-below ()
   (interactive)
   (if (eolp)
