@@ -24,7 +24,7 @@
 ;; Theme
 (load-theme 'zenburn t)
 
-;; Remeber open buffers for next session.
+;; Remember open buffers for next session.
 (desktop-save-mode t)
 
 ;; Interactively do shit!
@@ -55,7 +55,6 @@
 (add-hook 'lisp-mode-hook             (lambda () (paredit-mode t)))
 (add-hook 'lisp-interaction-mode-hook (lambda () (paredit-mode t)))
 (add-hook 'scheme-mode-hook           (lambda () (paredit-mode t)))
-
 ;; Auto-completion is sick!
 (require 'auto-complete)
 (global-auto-complete-mode t)
@@ -73,6 +72,7 @@
 (setq c-basic-offset 4)
 (setq c-default-style "k&r" c-basic-offset 4)
 (which-function-mode t)
+(electric-indent-mode t)
 
 ;; Scheme
 (put 'syntax-parameterize 'scheme-indent-function 1)
