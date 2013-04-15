@@ -72,8 +72,7 @@
 (erc-autojoin-mode t)
 (setq erc-autojoin-channels-alist
       '(("rizon.us" "#/g/sicp" "#/g/amedev")
-        ("freenode.net" "#mediagoblin" "#libre.fm" "#allegro" "#guile" "#emacs" "#vidyadev")
-        ("gimp.org" "#evolution")))
+        ("freenode.net" "#mediagoblin" "#libre.fm" "#allegro" "#guile" "#emacs" "#vidyadev")))
 
 ;; Secret password file
 (load "~/.emacs.d/.ercpasswords")
@@ -89,20 +88,5 @@
 (defun start-irc ()
   "Connect to IRC."
   (interactive)
-  (when (y-or-n-p "Do you want to start IRC? ")
-    (erc :server "irc.rizon.us"     :port 6667 :nick erc-nick :password rizon-password)
-    (erc :server "irc.freenode.net" :port 6667 :nick erc-nick :password freenode-password)))
-
-(defun filter-server-buffers ()
-  (delq nil
-        (mapcar
-         (lambda (x) (and (erc-server-buffer-p x) x))
-         (buffer-list))))
-
-(defun stop-irc ()
-  "Disconnects from all irc servers"
-  (interactive)
-  (dolist (buffer (filter-server-buffers))
-    (message "Server buffer: %s" (buffer-name buffer))
-    (with-current-buffer buffer
-      (erc-quit-server "Asta la vista"))))
+  (erc :server "irc.rizon.us"     :port 6667 :nick erc-nick :password rizon-password)
+  (erc :server "irc.freenode.net" :port 6667 :nick erc-nick :password freenode-password))
