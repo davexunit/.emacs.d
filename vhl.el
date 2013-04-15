@@ -5,7 +5,7 @@
 ;;(setq package-load-list '((ruby-test-mode "1.1") all))
 
 ;; Font
-(set-default-font "Source_Code_Pro-12")
+(set-default-font "Source_Code_Pro-14")
 
 ;; Helpful keyboard tweak to make things easier.
 (setq mac-command-modifier 'meta)
@@ -26,13 +26,18 @@
 
 ;; Ruby
 (require 'rvm)
-(rvm-use "ree-1.8.7" "rails2311")
 (require 'ruby-test-mode)
 (require 'feature-mode)
 (require 'ruby-tools)
-(require 'ruby-end)
+(require 'inf-ruby)
 (require 'rinari)
 (require 'yaml-mode)
+
+;; RVM
+(rvm-use "ree-1.8.7" "rails2311")
+
+;; Rinari is an awesome Rails development minor mode
+(global-rinari-mode t)
 
 ;; Rake files are ruby, too, as are gemspecs, rackup files, etc.
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
@@ -49,14 +54,14 @@
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
 ;; Rinari (Minor Mode for Ruby On Rails)
-(setq rinari-major-modes
-      (list 'mumamo-after-change-major-mode-hook 'dired-mode-hook 'ruby-mode-hook
-            'css-mode-hook 'yaml-mode-hook 'javascript-mode-hook))
+;; (setq rinari-major-modes
+;;       (list 'mumamo-after-change-major-mode-hook 'dired-mode-hook 'ruby-mode-hook
+;;             'css-mode-hook 'yaml-mode-hook 'javascript-mode-hook))
 
 ;; Fix newline-and-indent in ruby-mode
-(add-hook 'ruby-mode-hook
-          (lambda ()
-            (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)))
+;; (add-hook 'ruby-mode-hook
+;;           (lambda ()
+;;             (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)))
 
 ;; Use web-mode for editing code embedded in HTML.
 (add-to-list 'load-path "~/.emacs.d/elisp/web-mode")

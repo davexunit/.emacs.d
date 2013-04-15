@@ -63,7 +63,7 @@
 (erc-truncate-mode +1)
 
 ;; enable spell checking
-(erc-spelling-mode 1)
+(erc-spelling-mode 0)
 
 ;; utf-8 always and forever
 (setq erc-server-coding-system '(utf-8 . utf-8))
