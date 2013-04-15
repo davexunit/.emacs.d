@@ -142,7 +142,7 @@ might be bad."
 (global-set-key (kbd "C-x g") 'goto-line)
 (global-set-key (kbd "C-x p") 'package-list-packages)
 (global-set-key (kbd "C-c C-f") 'ff-find-other-file)
-(global-set-key (kbd "C-c p") 'c-declaration-to-prototype)
+(global-set-key (kbd "C-c s") 'geiser-connect)
 
 ;; Messy stuff lives beyond here
 
