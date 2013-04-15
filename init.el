@@ -189,3 +189,4 @@ might be bad."
       (setq line (1+ line)))
     (set-window-margins win width (cdr (window-margins win)))))
 (put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
