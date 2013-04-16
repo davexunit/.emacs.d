@@ -7,9 +7,10 @@
 ;; No splash screen.
 (setq inhibit-startup-message t)
 
-;; Line numbers are good!
+;; Handy line-related things
 (global-linum-mode t)
 (column-number-mode t)
+(global-hl-line-mode t)
 
 ;; Extra package repositories.
 (require 'package)
