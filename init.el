@@ -24,7 +24,7 @@
 
 ;; Theme
 (load-theme 'soothe t)
-(set-default-font "Monospace-8")
+(set-frame-font "DroidSansMono-8")
 
 ;; Remember open buffers for next session.
 (desktop-save-mode t)
