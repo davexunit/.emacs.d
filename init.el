@@ -22,7 +22,8 @@
 (package-initialize)
 
 ;; Theme
-(load-theme 'zenburn t)
+(load-theme 'soothe t)
+(set-default-font "Monospace-8")
 
 ;; Remember open buffers for next session.
 (desktop-save-mode t)
