@@ -85,7 +85,7 @@
 (put 'coroutine 'scheme-indent-function 1)
 
 ;; Vista Higher Learning configuration
-(defvar use-vhl-config t)
+(defvar use-vhl-config nil)
 
 (when use-vhl-config
   (load "~/.emacs.d/vhl.el"))
