@@ -148,6 +148,10 @@ might be bad."
 (global-set-key (kbd "C-c C-f") 'ff-find-other-file)
 (global-set-key (kbd "C-c s") 'geiser-connect)
 
+;; Enable some disabled-by-default functions
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+
 ;; Messy stuff lives beyond here
 
 ;; Patch for linum-mode
@@ -192,5 +196,3 @@ might be bad."
         (forward-line))
       (setq line (1+ line)))
     (set-window-margins win width (cdr (window-margins win)))))
-(put 'upcase-region 'disabled nil)
-(put 'downcase-region 'disabled nil)
