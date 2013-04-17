@@ -85,6 +85,9 @@
 (put 'stub 'scheme-indent-function 1)
 (put 'coroutine 'scheme-indent-function 1)
 
+;; SQL
+(add-hook 'sql-interactive-mode-hook (lambda () (setq truncate-lines t)))
+
 ;; Vista Higher Learning configuration
 (defvar use-vhl-config nil)
 
