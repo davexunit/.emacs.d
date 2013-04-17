@@ -84,11 +84,29 @@
 (put 'stub 'scheme-indent-function 1)
 (put 'coroutine 'scheme-indent-function 1)
 
+;; Ruby
+;; Rinari is an awesome Rails development minor mode
+(global-rinari-mode t)
+
+;; Rake files are ruby, too, as are gemspecs, rackup files, etc.
+(add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.thor$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.gemspec$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.ru$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Thorfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
+
+;; YAML
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+
 ;; SQL
 (add-hook 'sql-interactive-mode-hook (lambda () (setq truncate-lines t)))
 
 ;; Vista Higher Learning configuration
-(defvar use-vhl-config nil)
+(defvar use-vhl-config t)
 
 (when use-vhl-config
   (load "~/.emacs.d/vhl.el"))

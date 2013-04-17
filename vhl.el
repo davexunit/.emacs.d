@@ -2,10 +2,8 @@
 (push "/usr/local/bin" exec-path)
 
 ;; The latest ruby-test-mode doesn't work with rspec 1.3.2
-;;(setq package-load-list '((ruby-test-mode "1.1") all))
-
 ;; Font
-(set-frame-font "Source_Code_Pro-12")
+(set-frame-font "Source_Code_Pro-10")
 
 ;; Helpful keyboard tweak to make things easier.
 (setq mac-command-modifier 'meta)
@@ -36,41 +34,10 @@
 ;; RVM
 (rvm-use "ree-1.8.7" "rails2311")
 
-;; Rinari is an awesome Rails development minor mode
-(global-rinari-mode t)
-
-;; Rake files are ruby, too, as are gemspecs, rackup files, etc.
-(add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.thor$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.gemspec$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.ru$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Thorfile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
-
-;; YAML mode
-(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
-
-;; Rinari (Minor Mode for Ruby On Rails)
-;; (setq rinari-major-modes
-;;       (list 'mumamo-after-change-major-mode-hook 'dired-mode-hook 'ruby-mode-hook
-;;             'css-mode-hook 'yaml-mode-hook 'javascript-mode-hook))
-
 ;; Fix newline-and-indent in ruby-mode
 ;; (add-hook 'ruby-mode-hook
 ;;           (lambda ()
 ;;             (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)))
-
-;; Use web-mode for editing code embedded in HTML.
-(add-to-list 'load-path "~/.emacs.d/elisp/web-mode")
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 
 ;; MySQL
 (setq sql-mysql-program "/usr/local/bin/mysql")
