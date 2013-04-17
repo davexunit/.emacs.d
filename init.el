@@ -51,7 +51,6 @@
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode t)
 (show-paren-mode t)
-(autopair-global-mode 1)
 (add-hook 'emacs-lisp-mode-hook       (lambda () (paredit-mode t)))
 (add-hook 'lisp-mode-hook             (lambda () (paredit-mode t)))
 (add-hook 'lisp-interaction-mode-hook (lambda () (paredit-mode t)))
