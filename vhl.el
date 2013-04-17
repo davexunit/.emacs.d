@@ -5,7 +5,7 @@
 ;;(setq package-load-list '((ruby-test-mode "1.1") all))
 
 ;; Font
-(set-default-font "Source_Code_Pro-14")
+(set-frame-font "Source_Code_Pro-12")
 
 ;; Helpful keyboard tweak to make things easier.
 (setq mac-command-modifier 'meta)
