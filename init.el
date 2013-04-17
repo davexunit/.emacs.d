@@ -194,7 +194,7 @@ might be bad."
              (visited (catch 'visited
                         (dolist (o (overlays-in (point) (point)))
                           (when (equal-including-properties
-(overlay-get o 'linum-str) str)
+                                 (overlay-get o 'linum-str) str)
                             (unless (memq o linum-overlays)
                               (push o linum-overlays))
                             (setq linum-available (delq o linum-available))
