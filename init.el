@@ -164,6 +164,7 @@ might be bad."
 (global-set-key (kbd "C-x p") 'package-list-packages)
 (global-set-key (kbd "C-c C-f") 'ff-find-other-file)
 (global-set-key (kbd "C-c s") 'geiser-connect)
+(global-set-key (kbd "C-c b") 'bundle-install)
 
 ;; Enable some disabled-by-default functions
 (put 'upcase-region 'disabled nil)
