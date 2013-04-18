@@ -90,3 +90,17 @@
   (interactive)
   (erc :server "irc.rizon.us"     :port 6667 :nick erc-nick :password rizon-password)
   (erc :server "irc.freenode.net" :port 6667 :nick erc-nick :password freenode-password))
+
+(defun filter-erc-server-buffers ()
+  (delq nil
+        (mapcar
+         (lambda (x) (and (erc-server-buffer-p x) x))
+         (buffer-list))))
+
+(defun stop-irc ()
+  "Disconnects from all irc servers"
+  (interactive)
+  (dolist (buffer (filter-erc-server-buffers))
+    (message "Server buffer: %s" (buffer-name buffer))
+    (with-current-buffer buffer
+      (erc-quit-server "Later"))))
