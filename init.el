@@ -84,6 +84,10 @@
 (put 'coroutine 'scheme-indent-function 1)
 
 ;; Ruby
+(require 'rvm)
+(require 'ruby-test-mode)
+(require 'rinari)
+
 ;; Rinari is an awesome Rails development minor mode
 (global-rinari-mode t)
 
