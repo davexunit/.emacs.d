@@ -98,9 +98,6 @@
 (add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
 
-;; YAML
-(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
-
 ;; SQL
 (add-hook 'sql-interactive-mode-hook (lambda () (setq truncate-lines t)))
 
