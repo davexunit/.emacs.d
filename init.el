@@ -7,10 +7,8 @@
 ;; No splash screen.
 (setq inhibit-startup-message t)
 
-;; Handy line-related things
-(global-linum-mode t)
-(column-number-mode t)
-(global-hl-line-mode t)
+;; Theme
+(load-theme 'soothe t)
 
 ;; Extra package repositories.
 (require 'package)
@@ -22,8 +20,10 @@
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
-;; Theme
-(load-theme 'soothe t)
+;; Handy line-related things
+(global-linum-mode t)
+(column-number-mode t)
+(global-hl-line-mode t)
 
 ;; Remember open buffers for next session.
 (desktop-save-mode t)
@@ -36,9 +36,6 @@
 ;; Easy window movement.
 (require 'windmove)
 (windmove-default-keybindings 'meta)
-
-;; Better buffer naming.
-(require 'uniquify)
 
 ;; Save point position between sessions
 (require 'saveplace)
@@ -106,7 +103,7 @@
 (add-hook 'sql-interactive-mode-hook (lambda () (setq truncate-lines t)))
 
 ;; Vista Higher Learning configuration
-(defvar use-vhl-config t)
+(defvar use-vhl-config ni)
 
 (when use-vhl-config
   (load "~/.emacs.d/vhl.el"))
