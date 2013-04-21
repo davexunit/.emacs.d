@@ -7,9 +7,6 @@
 ;; No splash screen.
 (setq inhibit-startup-message t)
 
-;; Theme
-(load-theme 'soothe t)
-
 ;; Extra package repositories.
 (require 'package)
 (add-to-list 'package-archives
@@ -19,6 +16,10 @@
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
+
+;; Theme
+(load-theme 'soothe t)
+
 
 ;; Handy line-related things
 (global-linum-mode t)
