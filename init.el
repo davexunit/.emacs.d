@@ -78,19 +78,15 @@
 
 ;; Scheme
 (put 'syntax-parameterize 'scheme-indent-function 1)
-(put 'describe 'scheme-indent-function 1)
-(put 'it 'scheme-indent-function 1)
-(put 'before-each 'scheme-indent-function 1)
-(put 'after-each 'scheme-indent-function 1)
-(put 'stub 'scheme-indent-function 1)
 (put 'coroutine 'scheme-indent-function 1)
+(put 'define-coroutine 'scheme-indent-function 1)
 
 ;; Ruby
 (require 'rvm)
 (require 'ruby-test-mode)
 (require 'rinari)
 
-;; Rinari is an awesome Rails development minor mode
+;; Rinari is an awesome for Rails development.
 (global-rinari-mode t)
 
 ;; Rake files are ruby, too, as are gemspecs, rackup files, etc.
@@ -105,6 +101,7 @@
 (add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
 
 ;; SQL
+;; Don't wrap lines so that table listings with a lot of columns remain readable.
 (add-hook 'sql-interactive-mode-hook (lambda () (setq truncate-lines t)))
 
 ;; Load machine specific emacs configuration
