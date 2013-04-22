@@ -103,11 +103,8 @@
 ;; SQL
 (add-hook 'sql-interactive-mode-hook (lambda () (setq truncate-lines t)))
 
-;; Vista Higher Learning configuration
-(defvar use-vhl-config ni)
-
-(when use-vhl-config
-  (load "~/.emacs.d/vhl.el"))
+;; Load machine specific emacs configuration
+(load "~/.emacs.d/local.el")
 
 ;; Handy functions courtesy of whattheemacs.d
 (defun open-line-below ()
