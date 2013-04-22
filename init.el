@@ -20,7 +20,6 @@
 ;; Theme
 (load-theme 'soothe t)
 
-
 ;; Handy line-related things
 (global-linum-mode t)
 (column-number-mode t)
@@ -64,11 +63,16 @@
 ;; Snippets.
 (auto-insert-mode t)
 
-;; Coding style.
+;; Tabs and alignment
 (setq-default indent-tabs-mode nil)
+(setq indent-tabs-mode nil)
 (setq tab-width 4)
 (setq c-basic-offset 4)
+(setq c-basic-indent 2)
 (setq c-default-style "k&r" c-basic-offset 4)
+(setq tab-width 4)
+(setq js-indent-level 2)
+(setq js2-basic-offset 2)
 (which-function-mode t)
 (electric-indent-mode t)
 
@@ -167,6 +171,7 @@ might be bad."
 (put 'downcase-region 'disabled nil)
 
 ;; Messy stuff lives beyond here
+;; TODO: Move to its own file
 
 ;; Patch for linum-mode
 (defun linum-update-window (win)
