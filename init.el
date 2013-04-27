@@ -105,7 +105,9 @@
 (add-hook 'sql-interactive-mode-hook (lambda () (setq truncate-lines t)))
 
 ;; Load machine specific emacs configuration
-(load "~/.emacs.d/local.el")
+(defvar local-config-filename "~/.emacs.d/local.el")
+(if (file-exists-p local-config-filename)
+    (load local-config-filename))
 
 ;; Handy functions courtesy of whattheemacs.d
 (defun open-line-below ()
