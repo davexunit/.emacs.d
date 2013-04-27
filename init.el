@@ -44,7 +44,6 @@
 
 ;; Highlight matching parens, automatically insert pairs, use rainbow
 ;; delimiters and use paredit for Lisp buffers.
-(require 'autopair)
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode t)
 (show-paren-mode t)
@@ -52,13 +51,10 @@
 (add-hook 'lisp-mode-hook             (lambda () (paredit-mode t)))
 (add-hook 'lisp-interaction-mode-hook (lambda () (paredit-mode t)))
 (add-hook 'scheme-mode-hook           (lambda () (paredit-mode t)))
+
 ;; Auto-completion is sick!
 (require 'auto-complete)
 (global-auto-complete-mode t)
-
-;; Syntax checker.
-(require 'flymake)
-(flymake-mode t)
 
 ;; Snippets.
 (auto-insert-mode t)
