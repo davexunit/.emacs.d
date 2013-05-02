@@ -26,6 +26,9 @@
 ;; Remember open buffers for next session.
 (desktop-save-mode t)
 
+;; Kill buffers that haven't been modified in awhile.
+(require 'midnight)
+
 ;; Interactively do shit!
 (require 'ido)
 (ido-mode t)
