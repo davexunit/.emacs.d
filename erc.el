@@ -72,7 +72,7 @@
 (erc-autojoin-mode t)
 (setq erc-autojoin-channels-alist
       '(("rizon.us" "#/g/sicp" "#/g/amedev")
-        ("freenode.net" "#mediagoblin" "#libre.fm" "#allegro" "#guile" "#emacs"
+        ("freenode.net" "#mediagoblin" "#libre.fm" "#guile" "#emacs"
          "#vidyadev" "#libreplanet-gaming")))
 
 ;; Secret password file
