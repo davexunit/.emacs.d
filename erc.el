@@ -73,7 +73,7 @@
 (setq erc-autojoin-channels-alist
       '(("rizon.io" "#/g/sicp" "#/g/amedev")
         ("freenode.net" "#mediagoblin" "#libre.fm" "#guile" "#emacs"
-         "#vidyadev" "#libreplanet-gaming")))
+         "#scheme" "#vidyadev" "#libreplanet-gaming")))
 
 ;; Secret password file
 (load "~/.emacs.d/.ercpasswords")
