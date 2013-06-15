@@ -77,6 +77,8 @@
 (put 'syntax-parameterize 'scheme-indent-function 1)
 (put 'coroutine 'scheme-indent-function 1)
 (put 'define-coroutine 'scheme-indent-function 1)
+(put 'gl-begin 'scheme-indent-function 1)
+(put 'with-gl-bind-texture 'scheme-indent-function 2)
 
 ;; Ruby
 (require 'rvm)
