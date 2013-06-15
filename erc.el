@@ -73,7 +73,7 @@
 (setq erc-autojoin-channels-alist
       '(("rizon.us" "#/g/sicp" "#/g/amedev")
         ("freenode.net" "#mediagoblin" "#libre.fm" "#allegro" "#guile" "#emacs"
-         "#vidyadev" "#libreplanet-gaming" "diaspora-dev")))
+         "#vidyadev" "#libreplanet-gaming" "#diaspora-dev" "#scheme")))
 
 ;; Secret password file
 (load "~/.emacs.d/.ercpasswords")
@@ -89,7 +89,7 @@
 (defun start-irc ()
   "Connect to IRC."
   (interactive)
-  (erc :server "irc.rizon.us"     :port 6667 :nick erc-nick :password rizon-password)
+  (erc :server "irc.rizon.io"     :port 6667 :nick erc-nick :password rizon-password)
   (erc :server "irc.freenode.net" :port 6667 :nick erc-nick :password freenode-password))
 
 (defun filter-erc-server-buffers ()
