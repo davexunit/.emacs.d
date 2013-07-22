@@ -75,8 +75,13 @@
 
 ;; Scheme
 (put 'syntax-parameterize 'scheme-indent-function 1)
-(put 'coroutine 'scheme-indent-function 1)
-(put 'define-coroutine 'scheme-indent-function 1)
+(put 'colambda 'scheme-indent-function 1)
+(put 'codefine 'scheme-indent-function 1)
+(put 'with-agenda 'scheme-indent-function 1)
+(put 'gl-begin 'scheme-indent-function 1)
+(put 'with-gl-push-matrix 'scheme-indent-function 0)
+(put 'with-gl-bind-texture 'scheme-indent-function 2)
+(put 'with-sprite-batch 'scheme-indent-function 1)
 
 ;; Ruby
 (require 'rvm)
