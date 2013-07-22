@@ -16,7 +16,7 @@
 (package-initialize)
 
 ;; Theme
-(load-theme 'soothe t)
+(load-theme 'solarized-dark t)
 
 ;; Handy line-related things
 (global-linum-mode t)
