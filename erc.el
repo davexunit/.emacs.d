@@ -71,9 +71,10 @@
 ;; Auto-join channels
 (erc-autojoin-mode t)
 (setq erc-autojoin-channels-alist
-      '(("rizon.io" "#/g/sicp" "#/g/amedev")
-        ("freenode.net" "#mediagoblin" "#libre.fm" "#guile" "#emacs"
-         "#vidyadev" "#libreplanet-gaming")))
+      '(("rizon.us" "#/g/sicp" "#/g/amedev")
+        ("freenode.net" "#mediagoblin" "#libre.fm" "#guile" "#emacs" "#scheme"
+         "#vidyadev" "#libreplanet-gaming" "#lispgames" "#diaspora-dev")
+        ("globalgamers.net" "#personagaf")))
 
 ;; Secret password file
 (load "~/.emacs.d/.ercpasswords")
@@ -89,8 +90,9 @@
 (defun start-irc ()
   "Connect to IRC."
   (interactive)
-  (erc :server "irc.rizon.io"     :port 6667 :nick erc-nick :password rizon-password)
-  (erc :server "irc.freenode.net" :port 6667 :nick erc-nick :password freenode-password))
+  (erc :server "irc.rizon.us"         :port 6667 :nick erc-nick :password rizon-password)
+  (erc :server "irc.freenode.net"     :port 6667 :nick erc-nick :password freenode-password)
+  (erc :server "irc.globalgamers.net" :port 6667 :nick erc-nick :password globalgamers-password))
 
 (defun filter-erc-server-buffers ()
   (delq nil
