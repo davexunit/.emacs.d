@@ -1,0 +1,8 @@
+* Dave's Emacs Configuration
+
+  This repository contains all of my customizations that I have been
+  assimilating so that I can easily keep my home desktop, laptop, work
+  desktop, etc. Emacs environments the same.
+
+  Take a look around and you might find some things that you want to
+  copy. :)
