@@ -157,6 +157,7 @@ might be bad."
 (load "~/.emacs.d/erc.el")
 
 ;; Keybinds
+(global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "<C-return>") 'open-line-below)
 (global-set-key (kbd "<C-M-return>") 'open-line-above)
@@ -168,6 +169,8 @@ might be bad."
 (global-set-key (kbd "C-c C-f") 'ff-find-other-file)
 (global-set-key (kbd "C-c s") 'geiser-connect)
 (global-set-key (kbd "C-c b") 'bundle-install)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-unset-key (kbd "C-z"))
 
 ;; Enable some disabled-by-default functions
 (put 'upcase-region 'disabled nil)
