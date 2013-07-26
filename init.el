@@ -108,6 +108,21 @@
 ;; Don't wrap lines so that table listings with a lot of columns remain readable.
 (add-hook 'sql-interactive-mode-hook (lambda () (setq truncate-lines t)))
 
+;;;
+;;; ibuffer
+;;;
+
+(setq ibuffer-saved-filter-groups
+      '(("default"
+         ("guile-2d" (filename . "Code/guile-2d/"))
+         ("dired" (mode . dired-mode))
+         ("org" (mode . org-mode))
+         ("erc" (mode . erc-mode)))))
+
+(add-hook 'ibuffer-mode-hook
+          (lambda ()
+            (ibuffer-switch-to-saved-filter-groups "default")))
+
 ;; Load machine specific emacs configuration
 (defvar local-config-filename "~/.emacs.d/local.el")
 (if (file-exists-p local-config-filename)
