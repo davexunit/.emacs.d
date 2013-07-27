@@ -16,7 +16,7 @@
 (package-initialize)
 
 ;; Theme
-(load-theme 'soothe t)
+(load-theme 'solarized-dark t)
 
 ;; Handy line-related things
 (global-linum-mode t)
@@ -63,22 +63,27 @@
 ;; Tabs and alignment
 (setq-default indent-tabs-mode nil)
 (setq indent-tabs-mode nil)
-(setq tab-width 4)
 (setq c-basic-offset 4)
 (setq c-basic-indent 2)
 (setq c-default-style "k&r" c-basic-offset 4)
-(setq tab-width 4)
+(setq tab-width 2)
 (setq js-indent-level 2)
 (setq js2-basic-offset 2)
 (which-function-mode t)
 (electric-indent-mode t)
 
+;; Javascript
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+
 ;; Scheme
 (put 'syntax-parameterize 'scheme-indent-function 1)
-(put 'coroutine 'scheme-indent-function 1)
-(put 'define-coroutine 'scheme-indent-function 1)
+(put 'colambda 'scheme-indent-function 1)
+(put 'codefine 'scheme-indent-function 1)
+(put 'with-agenda 'scheme-indent-function 1)
 (put 'gl-begin 'scheme-indent-function 1)
+(put 'with-gl-push-matrix 'scheme-indent-function 0)
 (put 'with-gl-bind-texture 'scheme-indent-function 2)
+(put 'with-sprite-batch 'scheme-indent-function 1)
 
 ;; Ruby
 (require 'rvm)
@@ -108,6 +113,21 @@
 ;;;
 
 (add-to-list 'auto-mode-alist '("\\.stumpwmrc$" . stumpwm-mode))
+
+;;;
+;;; ibuffer
+;;;
+
+(setq ibuffer-saved-filter-groups
+      '(("default"
+         ("guile-2d" (filename . "Code/guile-2d/"))
+         ("dired" (mode . dired-mode))
+         ("org" (mode . org-mode))
+         ("erc" (mode . erc-mode)))))
+
+(add-hook 'ibuffer-mode-hook
+          (lambda ()
+            (ibuffer-switch-to-saved-filter-groups "default")))
 
 ;; Load machine specific emacs configuration
 (defvar local-config-filename "~/.emacs.d/local.el")
@@ -158,6 +178,7 @@ might be bad."
 (load "~/.emacs.d/erc.el")
 
 ;; Keybinds
+(global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "<C-return>") 'open-line-below)
 (global-set-key (kbd "<C-M-return>") 'open-line-above)
@@ -169,6 +190,8 @@ might be bad."
 (global-set-key (kbd "C-c C-f") 'ff-find-other-file)
 (global-set-key (kbd "C-c s") 'geiser-connect)
 (global-set-key (kbd "C-c b") 'bundle-install)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-unset-key (kbd "C-z"))
 
 ;; Enable some disabled-by-default functions
 (put 'upcase-region 'disabled nil)
