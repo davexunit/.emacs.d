@@ -15,6 +15,10 @@
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
+;; For stuff that is not in a package repository
+(let ((default-directory "~/.emacs.d/lisp"))
+  (normal-top-level-add-subdirs-to-load-path))
+
 ;; Theme
 (load-theme 'solarized-dark t)
 
@@ -112,7 +116,8 @@
 ;;; StumpWM
 ;;;
 
-(add-to-list 'auto-mode-alist '("\\.stumpwmrc$" . stumpwm-mode))
+(require 'stumpwm-mode)
+(add-to-list 'auto-mode-alist '("\\.stumpwmrc$" . common-lisp-mode))
 
 ;;;
 ;;; ibuffer
