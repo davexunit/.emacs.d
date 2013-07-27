@@ -103,6 +103,12 @@
 ;; Don't wrap lines so that table listings with a lot of columns remain readable.
 (add-hook 'sql-interactive-mode-hook (lambda () (setq truncate-lines t)))
 
+;;;
+;;; StumpWM
+;;;
+
+(add-to-list 'auto-mode-alist '("\\.stumpwmrc$" . stumpwm-mode))
+
 ;; Load machine specific emacs configuration
 (defvar local-config-filename "~/.emacs.d/local.el")
 (if (file-exists-p local-config-filename)
