@@ -61,6 +61,9 @@
 (require 'auto-complete)
 (global-auto-complete-mode t)
 
+;; Interactive rebase in magit
+(require 'rebase-mode)
+
 ;; Snippets.
 (auto-insert-mode t)
 
