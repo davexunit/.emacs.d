@@ -1,5 +1,3 @@
-(require 'better-defaults)
-
 ;; No splash screen.
 (setq inhibit-startup-message t)
 
