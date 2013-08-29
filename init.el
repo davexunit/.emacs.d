@@ -1,8 +1,4 @@
-;; Turn off mouse interface early in startup to avoid momentary display
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-(set-fringe-mode 0)
+(require 'better-defaults)
 
 ;; No splash screen.
 (setq inhibit-startup-message t)
@@ -33,11 +29,6 @@
 ;; Kill buffers that haven't been modified in awhile.
 (require 'midnight)
 
-;; Interactively do shit!
-(require 'ido)
-(ido-mode t)
-(ido-ubiquitous-mode t)
-
 ;; Easy window movement.
 (require 'windmove)
 (windmove-default-keybindings 'meta)
@@ -56,10 +47,6 @@
 (add-hook 'lisp-mode-hook             (lambda () (paredit-mode t)))
 (add-hook 'lisp-interaction-mode-hook (lambda () (paredit-mode t)))
 (add-hook 'scheme-mode-hook           (lambda () (paredit-mode t)))
-
-;; Auto-completion is sick!
-(require 'auto-complete)
-(global-auto-complete-mode t)
 
 ;; Interactive rebase in magit
 (require 'rebase-mode)
@@ -198,7 +185,6 @@ might be bad."
 (global-set-key (kbd "C-c C-f") 'ff-find-other-file)
 (global-set-key (kbd "C-c s") 'geiser-connect)
 (global-set-key (kbd "C-c b") 'bundle-install)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-unset-key (kbd "C-z"))
 
 ;; Enable some disabled-by-default functions
