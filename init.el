@@ -32,6 +32,9 @@
 ;; Remember open buffers for next session.
 (desktop-save-mode t)
 
+;; Display battery level in modeline.
+(display-battery-mode t)
+
 ;; Kill buffers that haven't been modified in awhile.
 (require 'midnight)
 
