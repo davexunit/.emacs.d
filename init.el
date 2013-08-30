@@ -14,7 +14,9 @@
   (normal-top-level-add-subdirs-to-load-path))
 
 ;; Theme
-(load-theme 'solarized-dark t)
+(load-theme 'twilight-anti-bright t)
+
+(ido-ubiquitous-mode t)
 
 ;; Handy line-related things
 (global-linum-mode t)
