@@ -166,6 +166,14 @@ might be bad."
   (delete-trailing-whitespace)
   (set-buffer-file-coding-system 'utf-8))
 
+(defun change-theme (theme)
+  "Disable all active themes and load THEME."
+  (interactive
+   (lexical-let ((themes (mapcar 'symbol-name (custom-available-themes))))
+     (list (intern (completing-read "Load custom theme: " themes)))))
+  (mapc 'disable-theme custom-enabled-themes)
+  (load-theme theme t))
+
 ;; Various superfluous white-space. Just say no.
 (add-hook 'before-save-hook 'cleanup-buffer-safe)
 
