@@ -16,6 +16,12 @@
 ;; Theme
 (load-theme 'twilight-anti-bright t)
 
+;; Use /bin/sh for shell.
+;;
+;; I like to use fish shell as my login shell, but there are
+;; incompatabilities with its scripting language.
+(setq shell-file-name "/bin/sh")
+
 (ido-ubiquitous-mode t)
 
 ;; Handy line-related things
