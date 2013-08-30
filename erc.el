@@ -91,8 +91,7 @@
   "Connect to IRC."
   (interactive)
   (erc :server "irc.rizon.us"         :port 6667 :nick erc-nick :password rizon-password)
-  (erc :server "irc.freenode.net"     :port 6667 :nick erc-nick :password freenode-password)
-  (erc :server "irc.globalgamers.net" :port 6667 :nick erc-nick :password globalgamers-password))
+  (erc :server "irc.freenode.net"     :port 6667 :nick erc-nick :password freenode-password))
 
 (defun filter-erc-server-buffers ()
   (delq nil
