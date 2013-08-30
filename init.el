@@ -1,9 +1,3 @@
-;; Turn off mouse interface early in startup to avoid momentary display
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-(set-fringe-mode 0)
-
 ;; No splash screen.
 (setq inhibit-startup-message t)
 
@@ -20,7 +14,15 @@
   (normal-top-level-add-subdirs-to-load-path))
 
 ;; Theme
-(load-theme 'solarized-dark t)
+(load-theme 'twilight-anti-bright t)
+
+;; Use /bin/sh for shell.
+;;
+;; I like to use fish shell as my login shell, but there are
+;; incompatabilities with its scripting language.
+(setq shell-file-name "/bin/sh")
+
+(ido-ubiquitous-mode t)
 
 ;; Handy line-related things
 (global-linum-mode t)
@@ -32,11 +34,6 @@
 
 ;; Kill buffers that haven't been modified in awhile.
 (require 'midnight)
-
-;; Interactively do shit!
-(require 'ido)
-(ido-mode t)
-(ido-ubiquitous-mode t)
 
 ;; Easy window movement.
 (require 'windmove)
@@ -57,9 +54,8 @@
 (add-hook 'lisp-interaction-mode-hook (lambda () (paredit-mode t)))
 (add-hook 'scheme-mode-hook           (lambda () (paredit-mode t)))
 
-;; Auto-completion is sick!
-(require 'auto-complete)
-(global-auto-complete-mode t)
+;; Interactive rebase in magit
+(require 'rebase-mode)
 
 ;; Snippets.
 (auto-insert-mode t)
@@ -176,6 +172,14 @@ might be bad."
   (delete-trailing-whitespace)
   (set-buffer-file-coding-system 'utf-8))
 
+(defun change-theme (theme)
+  "Disable all active themes and load THEME."
+  (interactive
+   (lexical-let ((themes (mapcar 'symbol-name (custom-available-themes))))
+     (list (intern (completing-read "Load custom theme: " themes)))))
+  (mapc 'disable-theme custom-enabled-themes)
+  (load-theme theme t))
+
 ;; Various superfluous white-space. Just say no.
 (add-hook 'before-save-hook 'cleanup-buffer-safe)
 
@@ -195,7 +199,6 @@ might be bad."
 (global-set-key (kbd "C-c C-f") 'ff-find-other-file)
 (global-set-key (kbd "C-c s") 'geiser-connect)
 (global-set-key (kbd "C-c b") 'bundle-install)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-unset-key (kbd "C-z"))
 
 ;; Enable some disabled-by-default functions
