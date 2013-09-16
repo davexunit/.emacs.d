@@ -202,6 +202,7 @@ might be bad."
 (global-set-key (kbd "C-c C-f") 'ff-find-other-file)
 (global-set-key (kbd "C-c s") 'geiser-connect)
 (global-set-key (kbd "C-c b") 'bundle-install)
+(global-set-key (kbd "C-c r") 'rinari-rake)
 (global-unset-key (kbd "C-z"))
 
 ;; Enable some disabled-by-default functions
