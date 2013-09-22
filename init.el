@@ -25,6 +25,8 @@
 ;; incompatabilities with its scripting language.
 (setq shell-file-name "/bin/sh")
 
+;; ido
+(ido-mode t)
 (ido-ubiquitous-mode t)
 
 ;; Handy line-related things
