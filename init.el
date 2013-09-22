@@ -50,6 +50,31 @@
 (setq-default save-place t)
 (setq save-place-file (expand-file-name ".places" user-emacs-directory))
 
+;; Snippets.
+(auto-insert-mode t)
+
+;; Tabs and alignment
+(setq-default indent-tabs-mode nil)
+(setq indent-tabs-mode nil)
+(setq c-basic-offset 4)
+(setq c-basic-indent 2)
+(setq c-default-style "k&r" c-basic-offset 4)
+(setq tab-width 2)
+(which-function-mode t)
+(electric-indent-mode t)
+
+;;;
+;;; Javascript
+;;;
+
+(setq js-indent-level 2)
+(setq js2-basic-offset 2)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+
+;;;
+;;; Lisp
+;;;
+
 ;; Highlight matching parens, automatically insert pairs, use rainbow
 ;; delimiters and use paredit for Lisp buffers.
 (require 'rainbow-delimiters)
@@ -61,25 +86,10 @@
 (add-hook 'lisp-interaction-mode-hook (lambda () (paredit-mode t)))
 (add-hook 'scheme-mode-hook           (lambda () (paredit-mode t)))
 
-;; Snippets.
-(auto-insert-mode t)
+;;;
+;;; Scheme
+;;;
 
-;; Tabs and alignment
-(setq-default indent-tabs-mode nil)
-(setq indent-tabs-mode nil)
-(setq c-basic-offset 4)
-(setq c-basic-indent 2)
-(setq c-default-style "k&r" c-basic-offset 4)
-(setq tab-width 2)
-(setq js-indent-level 2)
-(setq js2-basic-offset 2)
-(which-function-mode t)
-(electric-indent-mode t)
-
-;; Javascript
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-
-;; Scheme
 (put 'syntax-parameterize 'scheme-indent-function 1)
 (put 'colambda 'scheme-indent-function 1)
 (put 'codefine 'scheme-indent-function 1)
@@ -89,20 +99,21 @@
 (put 'with-gl-bind-texture 'scheme-indent-function 2)
 (put 'with-sprite-batch 'scheme-indent-function 1)
 
-;; Ruby
+;;;
+;;; Ruby
+;;;
 
 ;; Rake files are ruby, too, as are gemspecs, rackup files, etc.
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.thor$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.gemspec$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.ru$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Thorfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
 
-;; SQL
+;;;
+;;; SQL
+;;;
+
 ;; Don't wrap lines so that table listings with a lot of columns remain readable.
 (add-hook 'sql-interactive-mode-hook (lambda () (setq truncate-lines t)))
 
@@ -185,6 +196,7 @@ might be bad."
 (global-set-key (kbd "C-c s") 'geiser-connect)
 (global-set-key (kbd "C-c b") 'bundle-install)
 (global-set-key (kbd "C-c r") 'rinari-rake)
+;; No more minimizing Emacs by accident.
 (global-unset-key (kbd "C-z"))
 
 ;; Enable some disabled-by-default functions
