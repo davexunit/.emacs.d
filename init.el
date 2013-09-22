@@ -53,6 +53,7 @@
 ;; Highlight matching parens, automatically insert pairs, use rainbow
 ;; delimiters and use paredit for Lisp buffers.
 (require 'rainbow-delimiters)
+(require 'paredit)
 (global-rainbow-delimiters-mode t)
 (show-paren-mode t)
 (add-hook 'emacs-lisp-mode-hook       (lambda () (paredit-mode t)))
