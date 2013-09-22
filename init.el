@@ -155,19 +155,6 @@
   (forward-line -1)
   (indent-for-tab-command))
 
-;; Turn a C function declaration into a function prototype.
-(defun c-declaration-to-prototype ()
-  (interactive)
-  (move-end-of-line nil)
-  (when (char-equal (char-before) (string-to-char ";"))
-    (delete-backward-char 1))
-  (insert " {")
-  (newline-and-indent)
-  (newline)
-  (insert "}")
-  (previous-line)
-  (move-end-of-line nil))
-
 (defun cleanup-buffer-safe ()
   "Perform a bunch of safe operations on the whitespace content of a buffer.
 Does not indent buffer, because it is used for a before-save-hook, and that
@@ -209,49 +196,3 @@ might be bad."
 ;; Enable some disabled-by-default functions
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
-
-;; Messy stuff lives beyond here
-;; TODO: Move to its own file
-
-;; Patch for linum-mode
-(defun linum-update-window (win)
-  "Update line numbers for the portion visible in window WIN."
-  (goto-char (window-start win))
-  (let ((line (line-number-at-pos))
-        (limit (window-end win t))
-        (fmt (cond ((stringp linum-format) linum-format)
-                   ((eq linum-format 'dynamic)
-                    (let ((w (length (number-to-string
-                                      (count-lines (point-min) (point-max))))))
-                      (concat " %" (number-to-string w) "d ")))))
-        (width 0))
-    (run-hooks 'linum-before-numbering-hook)
-    ;; Create an overlay (or reuse an existing one) for each
-    ;; line visible in this window, if necessary.
-    (while (and (not (eobp)) (<= (point) limit))
-      (let* ((str (if fmt
-                      (propertize (format fmt line) 'face 'linum)
-                    (funcall linum-format line)))
-             (visited (catch 'visited
-                        (dolist (o (overlays-in (point) (point)))
-                          (when (equal-including-properties
-                                 (overlay-get o 'linum-str) str)
-                            (unless (memq o linum-overlays)
-                              (push o linum-overlays))
-                            (setq linum-available (delq o linum-available))
-                            (throw 'visited t))))))
-        (setq width (max width (length str)))
-        (unless visited
-          (let ((ov (if (null linum-available)
-                        (make-overlay (point) (point))
-                      (move-overlay (pop linum-available) (point) (point)))))
-            (push ov linum-overlays)
-            (overlay-put ov 'before-string
-                         (propertize " " 'display `((margin left-margin) ,str)))
-            (overlay-put ov 'linum-str str))))
-      ;; Text may contain those nasty intangible properties, but that
-      ;; shouldn't prevent us from counting those lines.
-      (let ((inhibit-point-motion-hooks t))
-        (forward-line))
-      (setq line (1+ line)))
-    (set-window-margins win width (cdr (window-margins win)))))
