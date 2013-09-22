@@ -90,12 +90,6 @@
 (put 'with-sprite-batch 'scheme-indent-function 1)
 
 ;; Ruby
-(require 'rvm)
-(require 'ruby-test-mode)
-(require 'rinari)
-
-;; Rinari is an awesome for Rails development.
-(global-rinari-mode t)
 
 ;; Rake files are ruby, too, as are gemspecs, rackup files, etc.
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
