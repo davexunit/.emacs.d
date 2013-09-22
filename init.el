@@ -61,9 +61,6 @@
 (add-hook 'lisp-interaction-mode-hook (lambda () (paredit-mode t)))
 (add-hook 'scheme-mode-hook           (lambda () (paredit-mode t)))
 
-;; Interactive rebase in magit
-(require 'rebase-mode)
-
 ;; Snippets.
 (auto-insert-mode t)
 
