@@ -141,6 +141,12 @@
           (lambda ()
             (ibuffer-switch-to-saved-filter-groups "default")))
 
+;;;
+;;; Elfeed
+;;;
+(setq elfeed-feeds
+      '("http://planet.gnu.org/rss20.xml"))
+
 ;; Load machine specific emacs configuration
 (defvar local-config-filename "~/.emacs.d/local.el")
 (if (file-exists-p local-config-filename)
@@ -198,6 +204,7 @@ might be bad."
 (global-set-key (kbd "C-c s") 'geiser-connect)
 (global-set-key (kbd "C-c b") 'bundle-install)
 (global-set-key (kbd "C-c r") 'rinari-rake)
+(global-set-key (kbd "C-x w") 'elfeed)
 ;; No more minimizing Emacs by accident.
 (global-unset-key (kbd "C-z"))
 
