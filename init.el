@@ -38,13 +38,6 @@
 (desktop-save-mode t)
 
 ;; Display battery level in modeline if a battery is present.
-(when (and battery-status-function
-           (not (string-match-p
-                 "N/A"
-                 (battery-format
-                  "%B"
-                  (funcall battery-status-function)))))
-  (display-battery-mode t))
 
 ;; Kill buffers that haven't been modified in awhile.
 (require 'midnight)
