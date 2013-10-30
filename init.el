@@ -204,6 +204,7 @@ might be bad."
 (global-set-key (kbd "C-c b") 'bundle-install)
 (global-set-key (kbd "C-c r") 'rinari-rake)
 (global-set-key (kbd "C-x w") 'elfeed)
+(global-set-key (kbd "M-%") 'query-replace-regexp)
 ;; No more minimizing Emacs by accident.
 (global-unset-key (kbd "C-z"))
 
