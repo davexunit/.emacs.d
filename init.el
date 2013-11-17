@@ -37,8 +37,7 @@
 ;; Remember open buffers for next session.
 (desktop-save-mode t)
 
-;; Display battery level in modeline.
-(display-battery-mode t)
+;; Display battery level in modeline if a battery is present.
 
 ;; Kill buffers that haven't been modified in awhile.
 (require 'midnight)
@@ -142,6 +141,12 @@
           (lambda ()
             (ibuffer-switch-to-saved-filter-groups "default")))
 
+;;;
+;;; Elfeed
+;;;
+(setq elfeed-feeds
+      '("http://planet.gnu.org/rss20.xml"))
+
 ;; Load machine specific emacs configuration
 (defvar local-config-filename "~/.emacs.d/local.el")
 (if (file-exists-p local-config-filename)
@@ -199,6 +204,8 @@ might be bad."
 (global-set-key (kbd "C-c s") 'geiser-connect)
 (global-set-key (kbd "C-c b") 'bundle-install)
 (global-set-key (kbd "C-c r") 'rinari-rake)
+(global-set-key (kbd "C-x w") 'elfeed)
+(global-set-key (kbd "M-%") 'query-replace-regexp)
 ;; No more minimizing Emacs by accident.
 (global-unset-key (kbd "C-z"))
 
