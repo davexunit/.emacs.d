@@ -100,6 +100,7 @@
 (put 'with-gl-push-matrix 'scheme-indent-function 0)
 (put 'with-gl-bind-texture 'scheme-indent-function 2)
 (put 'with-sprite-batch 'scheme-indent-function 1)
+(put 'with-test-prefix 'scheme-indent-function 0)
 
 ;;;
 ;;; Ruby
