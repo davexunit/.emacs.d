@@ -17,7 +17,7 @@
   (normal-top-level-add-subdirs-to-load-path))
 
 ;; Theme
-(load-theme 'twilight-anti-bright t)
+(load-theme 'wombat t)
 
 ;; Use /bin/sh for shell.
 ;;
