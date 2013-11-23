@@ -144,8 +144,10 @@
 ;;;
 ;;; Elfeed
 ;;;
+
 (setq elfeed-feeds
-      '("http://planet.gnu.org/rss20.xml"))
+      '("http://planet.gnu.org/rss20.xml"
+        "http://cs.worcester.edu/blog/feed/"))
 
 ;; Load machine specific emacs configuration
 (defvar local-config-filename "~/.emacs.d/local.el")
