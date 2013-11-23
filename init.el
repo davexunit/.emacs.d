@@ -32,7 +32,6 @@
 ;; Handy line-related things
 (global-linum-mode t)
 (column-number-mode t)
-(global-hl-line-mode t)
 
 ;; Remember open buffers for next session.
 (desktop-save-mode t)
