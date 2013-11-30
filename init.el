@@ -17,7 +17,7 @@
   (normal-top-level-add-subdirs-to-load-path))
 
 ;; Theme
-(load-theme 'twilight-anti-bright t)
+(load-theme 'wombat t)
 
 ;; Use /bin/sh for shell.
 ;;
@@ -32,7 +32,6 @@
 ;; Handy line-related things
 (global-linum-mode t)
 (column-number-mode t)
-(global-hl-line-mode t)
 
 ;; Remember open buffers for next session.
 (desktop-save-mode t)
@@ -66,7 +65,8 @@
 (setq indent-tabs-mode nil)
 (setq c-basic-offset 4)
 (setq c-basic-indent 2)
-(setq c-default-style "k&r" c-basic-offset 4)
+(setq c-default-style "k&r")
+(setq c-basic-offset 4)
 (setq tab-width 2)
 (which-function-mode t)
 (electric-indent-mode t)
@@ -106,6 +106,7 @@
 (put 'with-gl-push-matrix 'scheme-indent-function 0)
 (put 'with-gl-bind-texture 'scheme-indent-function 2)
 (put 'with-sprite-batch 'scheme-indent-function 1)
+(put 'with-test-prefix 'scheme-indent-function 0)
 
 ;;;
 ;;; Ruby
@@ -150,8 +151,10 @@
 ;;;
 ;;; Elfeed
 ;;;
+
 (setq elfeed-feeds
-      '("http://planet.gnu.org/rss20.xml"))
+      '("http://planet.gnu.org/rss20.xml"
+        "http://cs.worcester.edu/blog/feed/"))
 
 ;; Load machine specific emacs configuration
 (defvar local-config-filename "~/.emacs.d/local.el")
@@ -210,7 +213,8 @@ might be bad."
 (global-set-key (kbd "C-c s") 'geiser-connect)
 (global-set-key (kbd "C-c b") 'bundle-install)
 (global-set-key (kbd "C-c r") 'rinari-rake)
-(global-set-key (kbd "C-x w") 'elfeed)
+(global-set-key (kbd "C-c f") 'elfeed)
+(global-set-key (kbd "M-%") 'query-replace-regexp)
 ;; No more minimizing Emacs by accident.
 (global-unset-key (kbd "C-z"))
 
