@@ -31,8 +31,7 @@
 (ido-mode t)
 (ido-ubiquitous-mode t)
 
-;; Handy line-related things
-(global-linum-mode t)
+;; Show columns
 (column-number-mode t)
 
 ;; Remember open buffers for next session.
