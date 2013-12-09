@@ -64,10 +64,9 @@
 ;; Tabs and alignment
 (setq-default indent-tabs-mode nil)
 (setq indent-tabs-mode nil)
-(setq c-basic-offset 4)
-(setq c-basic-indent 2)
 (setq c-default-style "k&r")
 (setq c-basic-offset 4)
+(setq c-basic-indent 2)
 (setq tab-width 2)
 (which-function-mode t)
 (electric-indent-mode t)
