@@ -26,6 +26,8 @@
 (setq shell-file-name "/bin/sh")
 
 ;; ido
+(setq ido-everywhere t)
+(setq ido-enable-flex-matching t)
 (ido-mode t)
 (ido-ubiquitous-mode t)
 
