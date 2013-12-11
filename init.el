@@ -156,6 +156,22 @@
       '("http://planet.gnu.org/rss20.xml"
         "http://cs.worcester.edu/blog/feed/"))
 
+;;;
+;;; Mail
+;;;
+
+(setq notmuch-fcc-dirs
+      '(("dthompson2@worcester.edu" . "WSU/Sent")
+        (".*" . "sent")))
+(setq send-mail-function 'smtpmail-send-it)
+(setq smtpmail-smtp-server "smtp.gmail.com")
+(setq smtpmail-smtp-service 465)
+(setq smtpmail-stream-type 'ssl)
+
+;;;
+;;; Other
+;;;
+
 ;; Load machine specific emacs configuration
 (defvar local-config-filename "~/.emacs.d/local.el")
 (if (file-exists-p local-config-filename)
