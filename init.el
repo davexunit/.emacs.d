@@ -121,13 +121,13 @@
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
 
 ;; Make rinari jump to/from javascript source files and specs.
-(setf (cdr (assoc 'javascript rinari-jump-schema))
-      '("j"
-        (("app/assets/javascripts/\\1.js" . "spec/javascripts/\\1_spec.js")
-         ("spec/javascripts/\\1_spec.js"  . "app/assets/javascripts/\\1.js")
-         (t . "spec/javascripts/.*")
-         (t . "app/javascripts/.*"))
-        t))
+(setcdr (assoc 'javascript rinari-jump-schema)
+        '("j"
+          (("app/assets/javascripts/\\1.js" . "spec/javascripts/\\1_spec.js")
+           ("spec/javascripts/\\1_spec.js"  . "app/assets/javascripts/\\1.js")
+           (t . "spec/javascripts/.*")
+           (t . "app/javascripts/.*"))
+          t))
 (rinari-apply-jump-schema rinari-jump-schema)
 
 ;;;
