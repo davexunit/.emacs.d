@@ -12,6 +12,27 @@
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
+;; Additional packages that I use.
+(setq required-packages
+      '(better-defaults
+        elfeed
+        geiser
+        ido-ubiquitous
+        js2-mode
+        magit
+        paredit
+        rainbow-delimiters
+        smex))
+
+(defun install-missing-packages ()
+  "Installs required packages that are missing"
+  (interactive)
+  (mapc (lambda (package)
+          (unless (package-installed-p package)
+            (package-install package)))
+        required-packages)
+  (message "Installed all missing packages!"))
+
 ;; For stuff that is not in a package repository
 (let ((default-directory "~/.emacs.d/lisp"))
   (normal-top-level-add-subdirs-to-load-path))
