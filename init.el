@@ -33,9 +33,6 @@
         required-packages)
   (message "Installed all missing packages!"))
 
-;; For stuff that is not in a package repository
-(let ((default-directory "~/.emacs.d/lisp"))
-  (normal-top-level-add-subdirs-to-load-path))
 
 ;; Theme
 (load-theme 'wombat t)
@@ -157,13 +154,6 @@
 
 ;; Don't wrap lines so that table listings with a lot of columns remain readable.
 (add-hook 'sql-interactive-mode-hook (lambda () (setq truncate-lines t)))
-
-;;;
-;;; StumpWM
-;;;
-
-(require 'stumpwm-mode)
-(add-to-list 'auto-mode-alist '("\\.stumpwmrc$" . common-lisp-mode))
 
 ;;;
 ;;; ibuffer
