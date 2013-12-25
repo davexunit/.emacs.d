@@ -231,6 +231,11 @@ might be bad."
   (mapc 'disable-theme custom-enabled-themes)
   (load-theme theme t))
 
+(defun connect-to-guile-wm ()
+  "Connect to guile-wm's REPL server."
+  (interactive)
+  (geiser-connect 'guile "localhost" "37147"))
+
 ;; Various superfluous white-space. Just say no.
 (add-hook 'before-save-hook 'cleanup-buffer-safe)
 
