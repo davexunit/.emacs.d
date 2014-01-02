@@ -182,6 +182,8 @@
 ;;; Mail
 ;;;
 
+(require 'notmuch)
+
 (setq notmuch-fcc-dirs
       '(("dthompson2@worcester.edu" . "WSU/Sent")
         (".*" . "sent")))
@@ -189,6 +191,13 @@
 (setq smtpmail-smtp-server "smtp.gmail.com")
 (setq smtpmail-smtp-service 465)
 (setq smtpmail-stream-type 'ssl)
+
+(define-key notmuch-search-mode-map "u"
+  (lambda ()
+    "Remove unread tag from message."
+    (interactive)
+    (notmuch-search-tag "-unread")
+    (notmuch-search-next-thread)))
 
 ;;;
 ;;; Other
@@ -256,6 +265,7 @@ might be bad."
 (global-set-key (kbd "C-c b") 'bundle-install)
 (global-set-key (kbd "C-c r") 'rinari-rake)
 (global-set-key (kbd "C-c f") 'elfeed)
+(global-set-key (kbd "C-c m") 'notmuch)
 (global-set-key (kbd "M-%") 'query-replace-regexp)
 ;; No more minimizing Emacs by accident.
 (global-unset-key (kbd "C-z"))
