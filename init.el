@@ -131,6 +131,14 @@ might be bad."
 (electric-indent-mode t)
 
 ;;;
+;;; Version Control
+;;;
+
+;; I don't like magit's default local tracking branch naming strategy.
+(setq magit-default-tracking-name-function
+      'magit-default-tracking-name-branch-only)
+
+;;;
 ;;; C
 ;;;
 
