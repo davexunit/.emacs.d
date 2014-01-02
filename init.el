@@ -25,14 +25,13 @@
         smex))
 
 (defun install-missing-packages ()
-  "Installs required packages that are missing"
+  "Install all required packages that haven't been installed."
   (interactive)
   (mapc (lambda (package)
           (unless (package-installed-p package)
             (package-install package)))
         required-packages)
   (message "Installed all missing packages!"))
-
 
 ;; Theme
 (load-theme 'wombat t)
