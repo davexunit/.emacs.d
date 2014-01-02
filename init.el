@@ -6,7 +6,16 @@
 ;; No splash screen.
 (setq inhibit-startup-message t)
 
-;; Extra package repositories.
+;; Use /bin/sh for shell.
+;;
+;; I like to use fish shell as my login shell, but there are
+;; incompatibilities with its scripting language.
+(setq shell-file-name "/bin/sh")
+
+;;;
+;;; Packages
+;;;
+
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -33,29 +42,31 @@
         required-packages)
   (message "Installed all missing packages!"))
 
-;; Theme
-(load-theme 'wombat t)
+;;;
+;;; Look and Feel
+;;;
 
-;; Use /bin/sh for shell.
-;;
-;; I like to use fish shell as my login shell, but there are
-;; incompatabilities with its scripting language.
-(setq shell-file-name "/bin/sh")
-
-;; ido
-(setq ido-everywhere t)
-(setq ido-enable-flex-matching t)
-(ido-mode t)
-(ido-ubiquitous-mode t)
-
-;; Show columns
+(set-default-font "Inconsolata-11")
+(load-theme 'twilight-anti-bright t)
 (column-number-mode t)
+(which-function-mode t)
 
-;; Remember open buffers for next session.
-(desktop-save-mode t)
+(defun change-theme (theme)
+  "Disable all active themes and load THEME."
+  (interactive
+   (lexical-let ((themes (mapcar 'symbol-name (custom-available-themes))))
+     (list (intern (completing-read "Load custom theme: " themes)))))
+  (mapc 'disable-theme custom-enabled-themes)
+  (load-theme theme t))
 
-;; Display battery level in modeline if a battery is present.
+;;;
+;;; Battery
+;;;
+
 (require 'battery)
+
+;; Display battery level in modeline only if a battery is present,
+;; otherwise display-battery-mode will throw an error.
 (when (and (boundp 'battery-status-function)
            (not (string-match-p
                  "N/A"
@@ -64,30 +75,68 @@
                   (funcall battery-status-function)))))
   (display-battery-mode t))
 
+;;;
+;;; Buffers
+;;;
+
+;; ido is awesome for the minibuffer.
+(setq ido-everywhere t)
+(setq ido-enable-flex-matching t)
+(ido-mode t)
+(ido-ubiquitous-mode t)
+
+;; Remember open buffers for next session.
+(desktop-save-mode t)
+
 ;; Kill buffers that haven't been modified in awhile.
 (require 'midnight)
-
-;; Easy window movement.
-(require 'windmove)
-(windmove-default-keybindings 'meta)
 
 ;; Save point position between sessions
 (require 'saveplace)
 (setq-default save-place t)
 (setq save-place-file (expand-file-name ".places" user-emacs-directory))
 
+(defun cleanup-buffer-safe ()
+  "Perform a bunch of safe operations on the whitespace content of a buffer.
+Does not indent buffer, because it is used for a before-save-hook, and that
+might be bad."
+  (interactive)
+  (delete-trailing-whitespace)
+  (set-buffer-file-coding-system 'utf-8))
+
+;; Various superfluous white-space. Just say no.
+(add-hook 'before-save-hook 'cleanup-buffer-safe)
+
 ;; Snippets.
 (auto-insert-mode t)
 
-;; Tabs and alignment
+(setq ibuffer-saved-filter-groups
+      '(("default"
+         ("guile-2d" (filename . "Code/guile-2d/"))
+         ("dired" (mode . dired-mode))
+         ("org" (mode . org-mode))
+         ("erc" (mode . erc-mode)))))
+
+(add-hook 'ibuffer-mode-hook
+          (lambda ()
+            (ibuffer-switch-to-saved-filter-groups "default")))
+
+;;;
+;;; Tabs
+;;;
+
 (setq-default indent-tabs-mode nil)
 (setq indent-tabs-mode nil)
+(setq tab-width 2)
+(electric-indent-mode t)
+
+;;;
+;;; C
+;;;
+
 (setq c-default-style "k&r")
 (setq c-basic-offset 4)
 (setq c-basic-indent 2)
-(setq tab-width 2)
-(which-function-mode t)
-(electric-indent-mode t)
 
 ;;;
 ;;; Javascript
@@ -112,10 +161,6 @@
 (add-hook 'lisp-interaction-mode-hook (lambda () (paredit-mode t)))
 (add-hook 'scheme-mode-hook           (lambda () (paredit-mode t)))
 
-;;;
-;;; Scheme
-;;;
-
 (put 'syntax-parameterize 'scheme-indent-function 1)
 (put 'colambda 'scheme-indent-function 1)
 (put 'codefine 'scheme-indent-function 1)
@@ -126,6 +171,11 @@
 (put 'with-sprite-batch 'scheme-indent-function 1)
 (put 'with-window 'scheme-indent-function 1)
 (put 'with-test-prefix 'scheme-indent-function 0)
+
+(defun connect-to-guile-wm ()
+  "Connect to guile-wm's REPL server."
+  (interactive)
+  (geiser-connect 'guile "localhost" "37147"))
 
 ;;;
 ;;; Ruby
@@ -152,26 +202,13 @@
 ;;; SQL
 ;;;
 
-;; Don't wrap lines so that table listings with a lot of columns remain readable.
-(add-hook 'sql-interactive-mode-hook (lambda () (setq truncate-lines t)))
+;; Don't wrap lines so that table listings with a lot of columns
+;; remain readable.
+(add-hook 'sql-interactive-mode-hook
+          (lambda () (setq truncate-lines t)))
 
 ;;;
-;;; ibuffer
-;;;
-
-(setq ibuffer-saved-filter-groups
-      '(("default"
-         ("guile-2d" (filename . "Code/guile-2d/"))
-         ("dired" (mode . dired-mode))
-         ("org" (mode . org-mode))
-         ("erc" (mode . erc-mode)))))
-
-(add-hook 'ibuffer-mode-hook
-          (lambda ()
-            (ibuffer-switch-to-saved-filter-groups "default")))
-
-;;;
-;;; Elfeed
+;;; RSS
 ;;;
 
 (setq elfeed-feeds
@@ -209,6 +246,13 @@
 (if (file-exists-p local-config-filename)
     (load local-config-filename))
 
+;; IRC configuration
+(load "~/.emacs.d/erc.el")
+
+;;;
+;;; Keybindings
+;;;
+
 ;; Handy functions courtesy of whattheemacs.d
 (defun open-line-below ()
   (interactive)
@@ -225,34 +269,10 @@
   (forward-line -1)
   (indent-for-tab-command))
 
-(defun cleanup-buffer-safe ()
-  "Perform a bunch of safe operations on the whitespace content of a buffer.
-Does not indent buffer, because it is used for a before-save-hook, and that
-might be bad."
-  (interactive)
-  (delete-trailing-whitespace)
-  (set-buffer-file-coding-system 'utf-8))
+;; Easy window movement.
+(require 'windmove)
+(windmove-default-keybindings 'meta)
 
-(defun change-theme (theme)
-  "Disable all active themes and load THEME."
-  (interactive
-   (lexical-let ((themes (mapcar 'symbol-name (custom-available-themes))))
-     (list (intern (completing-read "Load custom theme: " themes)))))
-  (mapc 'disable-theme custom-enabled-themes)
-  (load-theme theme t))
-
-(defun connect-to-guile-wm ()
-  "Connect to guile-wm's REPL server."
-  (interactive)
-  (geiser-connect 'guile "localhost" "37147"))
-
-;; Various superfluous white-space. Just say no.
-(add-hook 'before-save-hook 'cleanup-buffer-safe)
-
-;; erc configuration
-(load "~/.emacs.d/erc.el")
-
-;; Keybinds
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "<C-return>") 'open-line-below)
