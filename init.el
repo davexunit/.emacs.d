@@ -176,7 +176,8 @@
 
 (setq elfeed-feeds
       '("http://planet.gnu.org/rss20.xml"
-        "http://cs.worcester.edu/blog/feed/"))
+        "http://cs.worcester.edu/blog/feed/"
+        "https://hacks.mozilla.org/feed/"))
 
 ;;;
 ;;; Mail
