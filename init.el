@@ -55,6 +55,7 @@
 (desktop-save-mode t)
 
 ;; Display battery level in modeline if a battery is present.
+(require 'battery)
 (when (and (boundp 'battery-status-function)
            (not (string-match-p
                  "N/A"
