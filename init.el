@@ -222,7 +222,8 @@ might be bad."
 (setq elfeed-feeds
       '("http://planet.gnu.org/rss20.xml"
         "http://cs.worcester.edu/blog/feed/"
-        "https://hacks.mozilla.org/feed/"))
+        "https://hacks.mozilla.org/feed/"
+        "http://ebb.org/bkuhn/blog/rss.xml"))
 
 ;;;
 ;;; Mail
