@@ -291,7 +291,7 @@ might be bad."
 (global-set-key (kbd "C-c i") 'start-irc)
 (global-set-key (kbd "C-c p") 'package-list-packages)
 (global-set-key (kbd "C-c C-f") 'ff-find-other-file)
-(global-set-key (kbd "C-c s") 'geiser-connect)
+(global-set-key (kbd "C-c s") 'connect-to-guile)
 (global-set-key (kbd "C-c b") 'bundle-install)
 (global-set-key (kbd "C-c r") 'rinari-rake)
 (global-set-key (kbd "C-c f") 'elfeed)
