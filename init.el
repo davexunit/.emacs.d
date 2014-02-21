@@ -255,7 +255,8 @@ might be bad."
 (emms-standard)
 (emms-mode-line 1)
 (setq emms-player-mpd-server-name "localhost"
-      emms-player-mpd-server-port "6600")
+      emms-player-mpd-server-port "6600"
+      emms-volume-change-function 'emms-volume-mpd-change)
 (add-to-list 'emms-info-functions 'emms-info-mpd)
 (add-to-list 'emms-player-list 'emms-player-mpd)
 
