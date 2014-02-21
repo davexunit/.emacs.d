@@ -25,6 +25,7 @@
 (setq required-packages
       '(better-defaults
         elfeed
+        emms
         geiser
         ido-ubiquitous
         js2-mode
