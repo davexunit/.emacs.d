@@ -176,9 +176,12 @@ might be bad."
 (put 'gl-begin 'scheme-indent-function 1)
 (put 'with-gl-push-matrix 'scheme-indent-function 0)
 (put 'with-gl-bind-texture 'scheme-indent-function 2)
+(put 'with-shader-program 'scheme-indent-function 1)
+(put 'uniforms 'scheme-indent-function 1)
 (put 'with-sprite-batch 'scheme-indent-function 1)
 (put 'with-window 'scheme-indent-function 1)
 (put 'with-test-prefix 'scheme-indent-function 0)
+(put 'with-mutex 'scheme-indent-function 1)
 
 (defun connect-to-guile-wm ()
   "Connect to guile-wm's REPL server."
