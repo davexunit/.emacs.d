@@ -245,6 +245,19 @@ might be bad."
     (interactive)
     (notmuch-search-tag "-unread")
     (notmuch-search-next-thread)))
+;;;
+;;; Music
+;;;
+
+(require 'emms-player-mpd)
+(require 'emms-mode-line)
+
+(emms-standard)
+(emms-mode-line 1)
+(setq emms-player-mpd-server-name "localhost"
+      emms-player-mpd-server-port "6600")
+(add-to-list 'emms-info-functions 'emms-info-mpd)
+(add-to-list 'emms-player-list 'emms-player-mpd)
 
 ;;;
 ;;; Other
