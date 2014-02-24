@@ -123,13 +123,14 @@ might be bad."
             (ibuffer-switch-to-saved-filter-groups "default")))
 
 ;;;
-;;; Tabs
+;;; Tabs and Newlines
 ;;;
 
 (setq-default indent-tabs-mode nil)
 (setq indent-tabs-mode nil)
 (setq tab-width 2)
 (electric-indent-mode t)
+(setq require-final-newline t)
 
 ;;;
 ;;; Version Control
