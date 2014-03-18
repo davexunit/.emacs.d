@@ -51,6 +51,7 @@
 (load-theme 'twilight-anti-bright t)
 (column-number-mode t)
 (which-function-mode t)
+(fringe-mode 0)
 
 (defun change-theme (theme)
   "Disable all active themes and load THEME."
