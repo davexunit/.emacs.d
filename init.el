@@ -48,7 +48,7 @@
 ;;;
 
 (set-default-font "Inconsolata-11")
-(load-theme 'twilight-anti-bright t)
+(load-theme 'naquadah t)
 (column-number-mode t)
 (which-function-mode t)
 (fringe-mode 0)
