@@ -296,7 +296,6 @@ might be bad."
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "<C-return>") 'open-line-below)
 (global-set-key (kbd "<C-M-return>") 'open-line-above)
-(global-set-key (kbd "C-c c") 'comment-or-uncomment-region)
 (global-set-key (kbd "C-c g") 'magit-status)
 (global-set-key (kbd "C-c i") 'start-irc)
 (global-set-key (kbd "C-c p") 'package-list-packages)
